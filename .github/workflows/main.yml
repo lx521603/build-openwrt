@@ -42,8 +42,7 @@ jobs:
     - name: Clone source
       run: |
         cd /home/runner
-        git clone https://github.com/project-openwrt/openwrt.git
-        REPO_BRANCH: master
+        git clone -b master --single-branch https://github.com/project-openwrt/openwrt
         sudo chown -R runner:runner openwrt
         cd /home/runner/openwrt
         ./scripts/feeds update -a 
