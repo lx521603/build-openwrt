@@ -4,12 +4,12 @@ on:
   push:
     branches: 
       - master
-#  release:
-#    types: published
+  release:
+    types: published
 #  schedule:
 #    - cron: 0 8 * * 5
-#  watch:
-#    types: [started]
+  watch:
+    types: [started]
 
 jobs:
   build:
@@ -43,6 +43,7 @@ jobs:
       run: |
         cd /home/runner
         git clone https://github.com/project-openwrt/openwrt.git
+        REPO_BRANCH: master
         sudo chown -R runner:runner openwrt
         cd /home/runner/openwrt
         ./scripts/feeds update -a 
@@ -52,8 +53,8 @@ jobs:
         /bin/bash /home/runner/work/build-openwrt/build-openwrt/before_build.sh
         cp -fpR /home/runner/work/build-openwrt/build-openwrt/. /home/runner/openwrt/
 
-#    - name: SSH connection to Actions
-#      uses: csexton/debugger-action@master
+    - name: SSH connection to Actions
+      uses: csexton/debugger-action@master
 
     - name: Start Build
       run: | 
